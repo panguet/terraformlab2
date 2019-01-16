@@ -1,9 +1,26 @@
+###  this script will organize multicloud deployment with :
+### - AWS 
+### - Azure 
+### - google compute plateforme  (GCP)
+### version : 0.2
+
+
+# google Terraform deployment
 resource "google_compute_network" "our_development_network" {
   name = "devnetwork"
   project = "terraformlab2"
   auto_create_subnetworks = false
 }
  
+resource "google_compute_subnetwork" "dev-subnet" {
+  ip_cidr_range ="10.0.1.0/24"
+  name = "devsubnet"
+  network = "${google_compute_network.our_development_network.self_link}"
+  region = "europe-west1"
+ 
+}
+
+# AWS Terraform deployment
 resource "aws_vpc" "enviromment-example-two" {
   cidr_block = "10.0.0.0/16"
   enable_dns_hostnames = true
@@ -40,6 +57,9 @@ resource "aws_security_group" "subnetsecurity" {
   }
 }
 
+
+
+# Azure Terraform deployment
 resource "azurerm_resource_group" "azy_network" {
   location = "France Central"
   name = "devresgrp"
