@@ -1,0 +1,230 @@
+
+--------------------14 janvier - azure network creation with a all apply including existing deployment --------------------
+
+D:\Dev\terraformlab2>terraform apply
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  + aws_security_group.subnetsecurity
+      id:                                    <computed>
+      arn:                                   <computed>
+      description:                           "Managed by Terraform"
+      egress.#:                              <computed>
+      ingress.#:                             "1"
+      ingress.2165049311.cidr_blocks.#:      "1"
+      ingress.2165049311.cidr_blocks.0:      "10.0.0.0/16"
+      ingress.2165049311.description:        ""
+      ingress.2165049311.from_port:          "80"
+      ingress.2165049311.ipv6_cidr_blocks.#: "0"
+      ingress.2165049311.prefix_list_ids.#:  "0"
+      ingress.2165049311.protocol:           "tcp"
+      ingress.2165049311.security_groups.#:  "0"
+      ingress.2165049311.self:               "false"
+      ingress.2165049311.to_port:            "80"
+      name:                                  <computed>
+      owner_id:                              <computed>
+      revoke_rules_on_delete:                "false"
+      vpc_id:                                "${aws_vpc.enviromment-example-two.id}"
+
+  + aws_subnet.subnet1
+      id:                                    <computed>
+      arn:                                   <computed>
+      assign_ipv6_address_on_creation:       "false"
+      availability_zone:                     "eu-west-1a"
+      availability_zone_id:                  <computed>
+      cidr_block:                            "10.0.32.0/19"
+      ipv6_cidr_block:                       <computed>
+      ipv6_cidr_block_association_id:        <computed>
+      map_public_ip_on_launch:               "false"
+      owner_id:                              <computed>
+      vpc_id:                                "${aws_vpc.enviromment-example-two.id}"
+
+  + aws_subnet.subnet2
+      id:                                    <computed>
+      arn:                                   <computed>
+      assign_ipv6_address_on_creation:       "false"
+      availability_zone:                     "eu-west-1b"
+      availability_zone_id:                  <computed>
+      cidr_block:                            "10.0.128.0/18"
+      ipv6_cidr_block:                       <computed>
+      ipv6_cidr_block_association_id:        <computed>
+      map_public_ip_on_launch:               "false"
+      owner_id:                              <computed>
+      vpc_id:                                "${aws_vpc.enviromment-example-two.id}"
+
+  + aws_vpc.enviromment-example-two
+      id:                                    <computed>
+      arn:                                   <computed>
+      assign_generated_ipv6_cidr_block:      "false"
+      cidr_block:                            "10.0.0.0/16"
+      default_network_acl_id:                <computed>
+      default_route_table_id:                <computed>
+      default_security_group_id:             <computed>
+      dhcp_options_id:                       <computed>
+      enable_classiclink:                    <computed>
+      enable_classiclink_dns_support:        <computed>
+      enable_dns_hostnames:                  "true"
+      enable_dns_support:                    "true"
+      instance_tenancy:                      "default"
+      ipv6_association_id:                   <computed>
+      ipv6_cidr_block:                       <computed>
+      main_route_table_id:                   <computed>
+      owner_id:                              <computed>
+      tags.%:                                "1"
+      tags.Name:                             "terraform-aws-vpc-example-two"
+
+  + azurerm_resource_group.azy_network
+      id:                                    <computed>
+      location:                              "francecentral"
+      name:                                  "devresgrp"
+      tags.%:                                <computed>
+
+  + azurerm_virtual_network.blue_virtual_network
+      id:                                    <computed>
+      address_space.#:                       "1"
+      address_space.0:                       "10.0.0.0/16"
+      dns_servers.#:                         "2"
+      dns_servers.0:                         "10.0.0.4"
+      dns_servers.1:                         "10.0.0.5"
+      location:                              "francecentral"
+      name:                                  "bluevirtnetwork"
+      resource_group_name:                   "devresgrp"
+      subnet.#:                              "2"
+      subnet.1472110187.address_prefix:      "10.0.1.0/24"
+      subnet.1472110187.id:                  <computed>
+      subnet.1472110187.name:                "subnet1"
+      subnet.1472110187.security_group:      ""
+      subnet.2796830261.address_prefix:      "10.0.2.0/24"
+      subnet.2796830261.id:                  <computed>
+      subnet.2796830261.name:                "subnet2"
+      subnet.2796830261.security_group:      ""
+      tags.%:                                "1"
+      tags.enviromment:                      "blue-world_finder"
+
+  + google_compute_network.our_development_network
+      id:                                    <computed>
+      auto_create_subnetworks:               "false"
+      gateway_ipv4:                          <computed>
+      name:                                  "devnetwork"
+      project:                               "terraformlab2"
+      routing_mode:                          <computed>
+      self_link:                             <computed>
+
+
+Plan: 7 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+google_compute_network.our_development_network: Creating...
+  auto_create_subnetworks: "" => "false"
+  gateway_ipv4:            "" => "<computed>"
+  name:                    "" => "devnetwork"
+  project:                 "" => "terraformlab2"
+  routing_mode:            "" => "<computed>"
+  self_link:               "" => "<computed>"
+aws_vpc.enviromment-example-two: Creating...
+  arn:                              "" => "<computed>"
+  assign_generated_ipv6_cidr_block: "" => "false"
+  cidr_block:                       "" => "10.0.0.0/16"
+  default_network_acl_id:           "" => "<computed>"
+  default_route_table_id:           "" => "<computed>"
+  default_security_group_id:        "" => "<computed>"
+  dhcp_options_id:                  "" => "<computed>"
+  enable_classiclink:               "" => "<computed>"
+  enable_classiclink_dns_support:   "" => "<computed>"
+  enable_dns_hostnames:             "" => "true"
+  enable_dns_support:               "" => "true"
+  instance_tenancy:                 "" => "default"
+  ipv6_association_id:              "" => "<computed>"
+  ipv6_cidr_block:                  "" => "<computed>"
+  main_route_table_id:              "" => "<computed>"
+  owner_id:                         "" => "<computed>"
+  tags.%:                           "" => "1"
+  tags.Name:                        "" => "terraform-aws-vpc-example-two"
+azurerm_resource_group.azy_network: Creating...
+  location: "" => "francecentral"
+  name:     "" => "devresgrp"
+  tags.%:   "" => "<computed>"
+azurerm_resource_group.azy_network: Creation complete after 1s (ID: /subscriptions/7f186f39-2031-4dfd-9859-e08f6afa4f62/resourceGroups/devresgrp)
+azurerm_virtual_network.blue_virtual_network: Creating...
+  address_space.#:                  "" => "1"
+  address_space.0:                  "" => "10.0.0.0/16"
+  dns_servers.#:                    "" => "2"
+  dns_servers.0:                    "" => "10.0.0.4"
+  dns_servers.1:                    "" => "10.0.0.5"
+  location:                         "" => "francecentral"
+  name:                             "" => "bluevirtnetwork"
+  resource_group_name:              "" => "devresgrp"
+  subnet.#:                         "" => "2"
+  subnet.1472110187.address_prefix: "" => "10.0.1.0/24"
+  subnet.1472110187.id:             "" => "<computed>"
+  subnet.1472110187.name:           "" => "subnet1"
+  subnet.1472110187.security_group: "" => ""
+  subnet.2796830261.address_prefix: "" => "10.0.2.0/24"
+  subnet.2796830261.id:             "" => "<computed>"
+  subnet.2796830261.name:           "" => "subnet2"
+  subnet.2796830261.security_group: "" => ""
+  tags.%:                           "" => "1"
+  tags.enviromment:                 "" => "blue-world_finder"
+aws_vpc.enviromment-example-two: Creation complete after 3s (ID: vpc-0896e875574e2cd00)
+aws_subnet.subnet1: Creating...
+  arn:                             "" => "<computed>"
+  assign_ipv6_address_on_creation: "" => "false"
+  availability_zone:               "" => "eu-west-1a"
+  availability_zone_id:            "" => "<computed>"
+  cidr_block:                      "" => "10.0.32.0/19"
+  ipv6_cidr_block:                 "" => "<computed>"
+  ipv6_cidr_block_association_id:  "" => "<computed>"
+  map_public_ip_on_launch:         "" => "false"
+  owner_id:                        "" => "<computed>"
+  vpc_id:                          "" => "vpc-0896e875574e2cd00"
+aws_subnet.subnet2: Creating...
+  arn:                             "" => "<computed>"
+  assign_ipv6_address_on_creation: "" => "false"
+  availability_zone:               "" => "eu-west-1b"
+  availability_zone_id:            "" => "<computed>"
+  cidr_block:                      "" => "10.0.128.0/18"
+  ipv6_cidr_block:                 "" => "<computed>"
+  ipv6_cidr_block_association_id:  "" => "<computed>"
+  map_public_ip_on_launch:         "" => "false"
+  owner_id:                        "" => "<computed>"
+  vpc_id:                          "" => "vpc-0896e875574e2cd00"
+aws_security_group.subnetsecurity: Creating...
+  arn:                                   "" => "<computed>"
+  description:                           "" => "Managed by Terraform"
+  egress.#:                              "" => "<computed>"
+  ingress.#:                             "" => "1"
+  ingress.2165049311.cidr_blocks.#:      "" => "1"
+  ingress.2165049311.cidr_blocks.0:      "" => "10.0.0.0/16"
+  ingress.2165049311.description:        "" => ""
+  ingress.2165049311.from_port:          "" => "80"
+  ingress.2165049311.ipv6_cidr_blocks.#: "" => "0"
+  ingress.2165049311.prefix_list_ids.#:  "" => "0"
+  ingress.2165049311.protocol:           "" => "tcp"
+  ingress.2165049311.security_groups.#:  "" => "0"
+  ingress.2165049311.self:               "" => "false"
+  ingress.2165049311.to_port:            "" => "80"
+  name:                                  "" => "<computed>"
+  owner_id:                              "" => "<computed>"
+  revoke_rules_on_delete:                "" => "false"
+  vpc_id:                                "" => "vpc-0896e875574e2cd00"
+aws_subnet.subnet2: Creation complete after 2s (ID: subnet-06823be805418ea44)
+aws_subnet.subnet1: Creation complete after 2s (ID: subnet-06695d0b6af2daddc)
+aws_security_group.subnetsecurity: Creation complete after 3s (ID: sg-00cfe3b539a2e2b31)
+google_compute_network.our_development_network: Still creating... (10s elapsed)
+azurerm_virtual_network.blue_virtual_network: Still creating... (10s elapsed)
+azurerm_virtual_network.blue_virtual_network: Creation complete after 12s (ID: /subscriptions/7f186f39-2031-4dfd-9859-...etwork/virtualNetworks/bluevirtnetwork)
+google_compute_network.our_development_network: Creation complete after 19s (ID: devnetwork)
+
+Apply complete! Resources: 7 added, 0 changed, 0 destroyed.
+
+--------------------14 janvier - azure network creation with a all apply including existing deployment --------------------
+
