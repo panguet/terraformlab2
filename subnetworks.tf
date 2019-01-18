@@ -1,61 +1,55 @@
 # Subnetworks part 
 resource "google_compute_subnetwork" "dev-subnet" {
-  ip_cidr_range ="10.0.1.0/24"
-  name = "devsubnet"
-  network = "${google_compute_network.our_development_network.self_link}"
-  region = "europe-west1"
- 
+  ip_cidr_range = "10.0.1.0/24"
+  name          = "devsubnet"
+  network       = "${google_compute_network.our_development_network.self_link}"
+  region        = "europe-west1"
 }
+
 resource "aws_subnet" "subnet1" {
-  cidr_block = "${cidrsubnet(aws_vpc.enviromment-example-two.cidr_block, 3, 1)}"
-  vpc_id = "${aws_vpc.enviromment-example-two.id}"
+  cidr_block        = "${cidrsubnet(aws_vpc.enviromment-example-two.cidr_block, 3, 1)}"
+  vpc_id            = "${aws_vpc.enviromment-example-two.id}"
   availability_zone = "eu-west-1a"
 }
 
 resource "aws_subnet" "subnet2" {
-  cidr_block = "${cidrsubnet(aws_vpc.enviromment-example-two.cidr_block, 2, 2)}"
-  vpc_id = "${aws_vpc.enviromment-example-two.id}"
+  cidr_block        = "${cidrsubnet(aws_vpc.enviromment-example-two.cidr_block, 2, 2)}"
+  vpc_id            = "${aws_vpc.enviromment-example-two.id}"
   availability_zone = "eu-west-1b"
 }
 
 resource "aws_security_group" "subnetsecurity" {
-  vpc_id ="${aws_vpc.enviromment-example-two.id}"
+  vpc_id = "${aws_vpc.enviromment-example-two.id}"
 
   ingress {
     cidr_blocks = [
-      "${aws_vpc.enviromment-example-two.cidr_block}"
+      "${aws_vpc.enviromment-example-two.cidr_block}",
     ]
 
     from_port = 80
-    to_port = 80
-    protocol = "tcp"
-
-
+    to_port   = 80
+    protocol  = "tcp"
   }
 }
 
-
 resource "azurerm_virtual_network" "blue_virtual_network" {
-  address_space = ["10.0.0.0/16"]
-  location = "France Central"
-  name = "bluevirtnetwork"
+  address_space       = ["10.0.0.0/16"]
+  location            = "France Central"
+  name                = "bluevirtnetwork"
   resource_group_name = "${azurerm_resource_group.azy_network.name}"
-  dns_servers = ["10.0.0.4", "10.0.0.5"]
-  
+  dns_servers         = ["10.0.0.4", "10.0.0.5"]
+
   subnet {
-    name = "subnet1"
+    name           = "subnet1"
     address_prefix = "10.0.1.0/24"
-
-  } 
+  }
 
   subnet {
-    name = "subnet2"
+    name           = "subnet2"
     address_prefix = "10.0.2.0/24"
+  }
 
-  } 
-  
   tags {
     enviromment = "blue-world_finder"
   }
 }
-
