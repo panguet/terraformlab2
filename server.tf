@@ -54,3 +54,14 @@ resource "aws_instance" "seconserver" {
     Name = "identification"
   }
 }
+
+
+output "first_output" {
+  value = "this is the value when you will apply "
+
+}
+
+output "aws_cidr_subnet1" {
+  value = "${aws_subnet.subnet1.cidr_block}"
+}
+
